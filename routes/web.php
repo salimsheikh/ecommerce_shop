@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 use App\Http\Middleware\AdminMiddleware;
 
 Route::get('/', [HomeController::class, 'home']);
@@ -20,6 +21,13 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::get("admin/dashboard",[HomeController::class, 'index'])
-->middleware(['auth',AdminMiddleware::class]);
+->middleware(['auth',AdminMiddleware::class])->name('admin.dashboard');
+
+Route::get("admin/view_category",[AdminController::class, 'view_category'])
+->middleware(['auth',AdminMiddleware::class])->name('admin.view_category');
+
+
+Route::post("admin/add_category",[AdminController::class, 'add_category'])
+->middleware(['auth',AdminMiddleware::class])->name('admin.add_category');
 
 //->name('admin.dashboard');
