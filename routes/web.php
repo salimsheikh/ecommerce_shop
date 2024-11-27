@@ -30,4 +30,11 @@ Route::get("admin/view_category",[AdminController::class, 'view_category'])
 Route::post("admin/add_category",[AdminController::class, 'add_category'])
 ->middleware(['auth',AdminMiddleware::class])->name('admin.add_category');
 
+
+Route::get("admin/delete_category/{id}",[AdminController::class, 'delete_category'])
+->middleware(['auth',AdminMiddleware::class])->name('admin.delete_category');
+
+
+
+
 //->name('admin.dashboard');
